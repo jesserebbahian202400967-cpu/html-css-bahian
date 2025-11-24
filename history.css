@@ -1,0 +1,67 @@
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #c7c7c7;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background: #7d9483;
+}
+
+.navbar .avatar {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin-left: 30px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+}
+
+.navbar a.active {
+  border-bottom: 3px solid white;
+}
+
+.content {
+  padding: 30px;
+}
+
+.last-bill {
+  background: white;
+  width: 300px;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.table-box {
+  background: #7d9483;
+  padding: 20px;
+  width: 500px;
+  border-radius: 15px;
+}
+
+table {
+  background: white;
+  width: 100%;
+  border-radius: 10px;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}

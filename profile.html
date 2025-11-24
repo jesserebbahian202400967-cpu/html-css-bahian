@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile</title>
+  <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="profile.html">
+      <img src="profile.png.webp" class="avatar" alt="User Icon">
+    </a>
+
+    <ul>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="calculator.html">Calculator</a></li>
+      <li><a href="history.html">History</a></li>
+      <li><a href="login.html">Log out</a></li>
+    </ul>
+  </nav>
+
+  <section class="profile-section">
+
+    <div class="profile-header">
+      <img src="profile.png.webp" class="profile-pic">
+
+      <div class="text">
+        <h1 id="profile_name">User Name</h1>
+        <h3>Edit Profile</h3>
+        <p class="change">Change password</p>
+      </div>
+    </div>
+
+    <div class="info-box">
+
+      <div class="info-row">
+        <span class="icon">📧</span>
+        <label>Email</label>
+        <p id="profile_email">email@example.com</p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+<script>
+document.getElementById("profile_name").innerText =
+  localStorage.getItem("name");
+
+document.getElementById("profile_email").innerText =
+  localStorage.getItem("email");
+</script>
+
+</body>
+</html>

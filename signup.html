@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - Electric Bill Calculator</title>
+  <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+
+<div class="container">
+
+  <div class="left-box">
+    <a href="login.html" class="back-arrow">&#8592;</a>
+
+    <h1>Welcome</h1>
+
+    <img src="logo.png.png" alt="Electric Bill Calculator Logo" class="logo-img">
+
+    <h2>Your Electric Bill, Simplified!</h2>
+  </div>
+
+  <div class="right-box">
+
+  
+    <input type="text" id="name" placeholder="Enter name" class="input-box">
+    <input type="email" id="email" placeholder="Enter email" class="input-box">
+    <input type="password" placeholder="Password" class="input-box">
+
+    <div class="terms">
+      <input type="checkbox" id="terms">
+      <label for="terms">I agree to the terms & policy</label>
+    </div>
+
+  
+    <button class="login-btn" onclick="saveUser()">SIGN UP</button>
+
+    <p class="signin-text">Have an account? <a href="login.html">Sign in</a></p>
+
+  </div>
+</div>
+
+
+<script>
+function saveUser() {
+  localStorage.setItem("name", document.getElementById("name").value);
+  localStorage.setItem("email", document.getElementById("email").value);
+  window.location.href = "profile.html";
+}
+</script>
+
+</body>
+</html>

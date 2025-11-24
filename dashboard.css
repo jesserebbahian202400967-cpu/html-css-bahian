@@ -1,0 +1,89 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: #c9c9c9;
+}
+
+
+.navbar {
+  width: 100%;
+  background: #708b74;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+}
+
+.navbar .avatar {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+
+.content {
+  text-align: center;
+  padding: 40px;
+}
+
+
+.bill-box {
+  background: #8ca691;
+  width: 260px;
+  padding: 20px;
+  border-radius: 15px;
+  margin: 0 auto 40px;
+  text-align: left;
+}
+
+.bill-box h1 {
+  margin: 0;
+}
+
+
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.card {
+  background: white;
+  width: 260px;
+  padding: 25px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.card-img {
+  width: 80px;
+  margin-bottom: 15px;
+}
+
+.card h2 {
+  margin: 10px 0;
+}
+
+.card p {
+  font-size: 14px;
+  color: #555;
+}

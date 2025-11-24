@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>History</title>
+  <link rel="stylesheet" href="history.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="profile.html">
+    <img src="profile.png.webp" class="avatar">
+  </a>
+  <ul>
+    <li><a href="dashboard.html">Dashboard</a></li>
+    <li><a href="calculator.html">Calculator</a></li>
+    <li><a href="history.html" class="active">History</a></li>
+    <li><a href="login.html">Log out</a></li>
+  </ul>
+</nav>
+
+<section class="content">
+
+  <h2>Electric Bill History</h2>
+
+  <div class="last-bill">
+    <p>Last Month Bill:</p>
+    <h1 id="last_total">₱0.00</h1>
+    <small id="last_kwh"></small>
+  </div>
+
+  <div class="table-box">
+    <table>
+      <thead>
+        <tr>
+          <th>Month</th>
+          <th>kWh Used</th>
+          <th>Total Bill</th>
+          <th>Rate</th>
+        </tr>
+      </thead>
+      <tbody id="history_table">
+      </tbody>
+    </table>
+  </div>
+
+</section>
+
+<script>
+window.onload = function () {
+
+  let month = localStorage.getItem("last_month");
+  let kwh = localStorage.getItem("last_consumption");
+  let total = localStorage.getItem("last_total");
+  let rate = localStorage.getItem("last_rate");
+
+  if (month && kwh && total && rate) {
+    // show last bill
+    document.getElementById("last_total").innerText = "₱" + total;
+    document.getElementById("last_kwh").innerText = kwh + " kWh";
+
+    // add row to history table
+    document.getElementById("history_table").innerHTML = `
+      <tr>
+        <td>${month}</td>
+        <td>${kwh}</td>
+        <td>₱${total}</td>
+        <td>${rate}</td>
+      </tr>
+    `;
+  }
+};
+</script>
+
+</body>
+</html>
