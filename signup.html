@@ -22,9 +22,8 @@
 
   <div class="right-box">
 
-  
-    <input type="text" id="name" placeholder="Enter name" class="input-box">
-    <input type="email" id="email" placeholder="Enter email" class="input-box">
+    <input type="text" placeholder="Enter name" class="input-box">
+    <input type="email" placeholder="Enter email" class="input-box">
     <input type="password" placeholder="Password" class="input-box">
 
     <div class="terms">
@@ -33,21 +32,14 @@
     </div>
 
   
-    <button class="login-btn" onclick="saveUser()">SIGN UP</button>
+   <a href="profile.html" class="signup-btn">SIGN UP</a>
+
+
 
     <p class="signin-text">Have an account? <a href="login.html">Sign in</a></p>
 
   </div>
 </div>
-
-
-<script>
-function saveUser() {
-  localStorage.setItem("name", document.getElementById("name").value);
-  localStorage.setItem("email", document.getElementById("email").value);
-  window.location.href = "profile.html";
-}
-</script>
 
 </body>
 </html>

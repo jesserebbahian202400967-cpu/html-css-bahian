@@ -5,7 +5,7 @@ body {
   background: #c9c9c9;
 }
 
-
+/* NAVBAR */
 .navbar {
   width: 100%;
   background: #708b74;
@@ -37,13 +37,13 @@ body {
   text-decoration: underline;
 }
 
-
+/* CONTENT */
 .content {
   text-align: center;
   padding: 40px;
 }
 
-
+/* BILL BOX */
 .bill-box {
   background: #8ca691;
   width: 260px;
@@ -57,7 +57,7 @@ body {
   margin: 0;
 }
 
-
+/* CARDS */
 .cards {
   display: flex;
   justify-content: center;
@@ -87,3 +87,40 @@ body {
   font-size: 14px;
   color: #555;
 }
+
+
+@media (max-width: 768px) {
+}
+
+  .navbar {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 15px;
+  }
+
+  .navbar .avatar {
+    width: 40px;
+    height: 40px;
+    margin: 0 0 10px 0;
+  }
+
+  
+  .navbar ul {
+    padding: 0;
+    gap: 20px;
+  }
+
+  .navbar a {
+    font-size: 16px;
+  }
+
+
+  .content {
+    padding: 20px;
+  }
+
+ 
+  .bill-box {
+    width: 100%;
+  }

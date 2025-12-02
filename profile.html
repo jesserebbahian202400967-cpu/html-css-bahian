@@ -27,7 +27,7 @@
       <img src="profile.png.webp" class="profile-pic">
 
       <div class="text">
-        <h1 id="profile_name">User Name</h1>
+        <h1>User Name</h1>
         <h3>Edit Profile</h3>
         <p class="change">Change password</p>
       </div>
@@ -38,21 +38,12 @@
       <div class="info-row">
         <span class="icon">📧</span>
         <label>Email</label>
-        <p id="profile_email">email@example.com</p>
+        <p>email@example.com</p>
       </div>
 
     </div>
 
   </section>
-
-
-<script>
-document.getElementById("profile_name").innerText =
-  localStorage.getItem("name");
-
-document.getElementById("profile_email").innerText =
-  localStorage.getItem("email");
-</script>
 
 </body>
 </html>

@@ -104,3 +104,69 @@ button {
   color: gray;
   font-size: 14px;
 }
+
+
+@media (max-width: 768px) {
+
+  /* NAVBAR becomes vertical */
+  .navbar {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 15px;
+  }
+
+  /* Smaller logo for mobile */
+  .navbar .avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* Menu centered */
+  .navbar ul {
+    margin: 10px 0 0 0;
+    gap: 15px;
+    padding: 0;
+  }
+
+  .navbar a {
+    font-size: 16px;
+  }
+
+  /* Layout stacks vertically */
+  .main {
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    padding: 20px;
+  }
+
+  .form-box,
+  .result-box {
+    width: 100%;
+    max-width: 380px;
+  }
+
+  .result-box h1 {
+    font-size: 35px;
+  }
+}
+
+
+@media (max-width: 480px) {
+
+  .navbar .avatar {
+    width: 32px;
+    height: 32px;
+  }
+
+  .form-box,
+  .result-box {
+    padding: 18px;
+  }
+
+  input,
+  button {
+    padding: 10px;
+  }
+}

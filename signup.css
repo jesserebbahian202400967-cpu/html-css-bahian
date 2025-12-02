@@ -81,15 +81,23 @@ body {
 }
 
 .signup-btn {
-  width: 50%;
-  padding: 12px;
-  background: #8fae98;
+  display: inline-block;
+  background: #859d8b;  
   color: white;
-  border: none;
-  border-radius: 40px;
-  font-size: 18px;
+  padding: 15px 40px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+  font-size: 16px;
   cursor: pointer;
 }
+
+.signup-btn:hover {
+  opacity: 0.9;
+}
+
+
 
 .signin-text {
   margin-top: 15px;

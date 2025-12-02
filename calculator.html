@@ -21,11 +21,9 @@
 </nav>
 
 <div class="main">
-
- 
   <div class="form-box">
     <h2>Electricity Bill Calculator</h2>
-    <p class="subtitle">Fill out the info below and we'll compute it for you!</p>
+    <p class="subtitle">Fill out the info below</p>
 
     <label>Month</label>
     <input type="text" id="month" placeholder="Ex: January">
@@ -36,41 +34,17 @@
     <label>Price per kWh (₱)</label>
     <input type="number" id="rate" placeholder="Ex: 12">
 
-    <button onclick="calculateBill()">Calculate</button>
+    <!-- Button does nothing now -->
+    <button>Calculate</button>
   </div>
-
 
   <div class="result-box">
     <h3>Your Estimated Bill:</h3>
     <h1 id="totalBill">₱0.00</h1>
     <p class="note">Calculation: kWh × Rate</p>
   </div>
-
 </div>
-
-<script>
-function calculateBill() {
-  let month = document.getElementById("month").value;
-  let consumption = parseFloat(document.getElementById("consumption").value);
-  let rate = parseFloat(document.getElementById("rate").value);
-
-  if (!month || isNaN(consumption) || isNaN(rate)) {
-    alert("Please fill out all fields correctly");
-    return;
-  }
-
-  let total = consumption * rate;
-
-  document.getElementById("totalBill").innerText = "₱" + total.toFixed(2);
-
-  // STORE DATA
-  localStorage.setItem("last_month", month);
-  localStorage.setItem("last_consumption", consumption);
-  localStorage.setItem("last_total", total.toFixed(2));
-  localStorage.setItem("last_rate", rate);
-}
-</script>
-
 
 </body>
 </html>
+

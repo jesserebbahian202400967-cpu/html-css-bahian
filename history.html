@@ -26,8 +26,8 @@
 
   <div class="last-bill">
     <p>Last Month Bill:</p>
-    <h1 id="last_total">₱0.00</h1>
-    <small id="last_kwh"></small>
+    <h1>₱0.00</h1>
+    <small>0 kWh</small>
   </div>
 
   <div class="table-box">
@@ -40,38 +40,16 @@
           <th>Rate</th>
         </tr>
       </thead>
-      <tbody id="history_table">
+      <tbody>
+       
       </tbody>
     </table>
   </div>
 
 </section>
 
-<script>
-window.onload = function () {
 
-  let month = localStorage.getItem("last_month");
-  let kwh = localStorage.getItem("last_consumption");
-  let total = localStorage.getItem("last_total");
-  let rate = localStorage.getItem("last_rate");
-
-  if (month && kwh && total && rate) {
-    // show last bill
-    document.getElementById("last_total").innerText = "₱" + total;
-    document.getElementById("last_kwh").innerText = kwh + " kWh";
-
-    // add row to history table
-    document.getElementById("history_table").innerHTML = `
-      <tr>
-        <td>${month}</td>
-        <td>${kwh}</td>
-        <td>₱${total}</td>
-        <td>${rate}</td>
-      </tr>
-    `;
-  }
-};
-</script>
 
 </body>
 </html>
+
