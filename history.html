@@ -48,15 +48,14 @@
 
 </section>
 
-</body>
 <script>
-  
+
+  // Load saved bill history from localStorage
   let history = JSON.parse(localStorage.getItem("billHistory")) || [];
 
-  
   const tbody = document.querySelector("table tbody");
 
- 
+  // Insert every result into the table
   history.forEach(entry => {
       const row = document.createElement("tr");
 
@@ -70,14 +69,15 @@
       tbody.appendChild(row);
   });
 
-
+  // Update the top “Last Month Bill”
   if (history.length > 0) {
-      const last = history[history.length - 1]; 
+      const last = history[history.length - 1];  // most recent entry
 
       document.querySelector(".last-bill h1").textContent = "₱" + last.total;
       document.querySelector(".last-bill small").textContent = last.consumption + " kWh";
   }
+
 </script>
 
+</body>
 </html>
-

@@ -22,7 +22,6 @@
 
 <div class="main">
 
-
   <div class="form-box">
     <h2>Electricity Bill Calculator</h2>
     <p class="sub">Fill out the info below</p>
@@ -39,7 +38,6 @@
     <button onclick="myFunction()">Calculate</button>
   </div>
 
-
   <div class="result-box">
     <h3>Your Estimated Bill:</h3>
     <h1 id="totalBill">₱0.00</h1>
@@ -48,5 +46,42 @@
 
 </div>
 
-
 <script>
+function myFunction() {
+  let month = document.getElementById("month").value;
+  let consumption = document.getElementById("consumption").value;
+  let rate = document.getElementById("rate").value;
+
+  let resultDisplay = document.getElementById("totalBill");
+
+  if (month === "" || consumption === "" || rate === "") {
+      alert("Please fill in all fields.");
+      return;
+  }
+
+  let total = consumption * rate;
+
+  resultDisplay.innerHTML = `₱${total.toFixed(2)}`;
+
+  let billRecord = {
+      month: month,
+      consumption: consumption,
+      rate: rate,
+      total: total.toFixed(2)
+  };
+
+  let history = JSON.parse(localStorage.getItem("billHistory")) || [];
+
+
+  history.push(billRecord);
+
+
+  localStorage.setItem("billHistory", JSON.stringify(history));
+
+
+}
+</script>
+
+
+</body>
+</html>
