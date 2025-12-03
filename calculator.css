@@ -1,9 +1,8 @@
 body {
   margin: 0;
-  background: #dfdfdf;
+  background: #c9c9c9;
   font-family: "Poppins", sans-serif;
 }
-
 
 .navbar {
   display: flex;
@@ -37,13 +36,13 @@ body {
 }
 
 
-
 .main {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
   padding: 40px;
 }
-
 
 .form-box {
   width: 420px;
@@ -86,9 +85,8 @@ button {
   cursor: pointer;
 }
 
-
 .result-box {
-  width: 280px;
+  width: 420px;
   background: white;
   padding: 25px;
   border-radius: 12px;
@@ -105,69 +103,6 @@ button {
   color: gray;
   font-size: 14px;
 }
-
-
-@media (max-width: 768px) {
-
- 
-  .navbar {
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    padding: 15px;
-  }
-
-  
-  .navbar .avatar {
-    width: 40px;
-    height: 40px;
-  }
-
-  
-  .navbar ul {
-    margin: 10px 0 0 0;
-    gap: 15px;
-    padding: 0;
-  }
-
-  .navbar a {
-    font-size: 16px;
-  }
-
-  
-  .main {
-    flex-direction: column;
-    align-items: center;
-    gap: 25px;
-    padding: 20px;
-  }
-
-  .form-box,
-  .result-box {
-    width: 100%;
-    max-width: 380px;
-  }
-
-  .result-box h1 {
-    font-size: 35px;
-  }
-}
-
-
-@media (max-width: 480px) {
-
-  .navbar .avatar {
-    width: 32px;
-    height: 32px;
-  }
-
-  .form-box,
-  .result-box {
-    padding: 18px;
-  }
-
-  input,
-  button {
-    padding: 10px;
-  }
+.result-box h3 {
+  margin-top: 0;
 }
