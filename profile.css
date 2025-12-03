@@ -5,7 +5,7 @@ body {
   background: #c9c9c9;
 }
 
-/* NAVBAR */
+
 .navbar {
   width: 100%;
   background: #708b74;
@@ -38,13 +38,13 @@ body {
   text-decoration: underline;
 }
 
-/* PROFILE SECTION */
+
 .profile-section {
   width: 100%;
   padding: 40px;
 }
 
-/* PROFILE HEADER */
+
 .profile-header {
   display: flex;
   align-items: center;
@@ -75,7 +75,7 @@ body {
   color: gray;
 }
 
-/* INFO CARD */
+
 .info-box {
   margin-top: 40px;
   background: #8ca691;

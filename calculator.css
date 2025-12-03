@@ -4,7 +4,7 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
-/* NAVBAR */
+
 .navbar {
   display: flex;
   align-items: center;
@@ -36,14 +36,15 @@ body {
   border-bottom: 3px solid white;
 }
 
-/* MAIN LAYOUT */
+
+
 .main {
   display: flex;
   justify-content: space-between;
   padding: 40px;
 }
 
-/* LEFT SIDE FORM */
+
 .form-box {
   width: 420px;
   background: white;
@@ -85,7 +86,7 @@ button {
   cursor: pointer;
 }
 
-/* RIGHT SIDE RESULT */
+
 .result-box {
   width: 280px;
   background: white;
@@ -108,7 +109,7 @@ button {
 
 @media (max-width: 768px) {
 
-  /* NAVBAR becomes vertical */
+ 
   .navbar {
     flex-direction: column;
     justify-content: center;
@@ -116,13 +117,13 @@ button {
     padding: 15px;
   }
 
-  /* Smaller logo for mobile */
+  
   .navbar .avatar {
     width: 40px;
     height: 40px;
   }
 
-  /* Menu centered */
+  
   .navbar ul {
     margin: 10px 0 0 0;
     gap: 15px;
@@ -133,7 +134,7 @@ button {
     font-size: 16px;
   }
 
-  /* Layout stacks vertically */
+  
   .main {
     flex-direction: column;
     align-items: center;

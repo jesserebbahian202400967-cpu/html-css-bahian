@@ -48,8 +48,36 @@
 
 </section>
 
-
-
 </body>
+<script>
+  
+  let history = JSON.parse(localStorage.getItem("billHistory")) || [];
+
+  
+  const tbody = document.querySelector("table tbody");
+
+ 
+  history.forEach(entry => {
+      const row = document.createElement("tr");
+
+      row.innerHTML = `
+        <td>${entry.month}</td>
+        <td>${entry.consumption} kWh</td>
+        <td>₱${entry.total}</td>
+        <td>₱${entry.rate}</td>
+      `;
+
+      tbody.appendChild(row);
+  });
+
+
+  if (history.length > 0) {
+      const last = history[history.length - 1]; 
+
+      document.querySelector(".last-bill h1").textContent = "₱" + last.total;
+      document.querySelector(".last-bill small").textContent = last.consumption + " kWh";
+  }
+</script>
+
 </html>
 

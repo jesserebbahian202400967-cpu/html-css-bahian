@@ -34,9 +34,54 @@
     <label>Price per kWh (₱)</label>
     <input type="number" id="rate" placeholder="Ex: 12">
 
-    <!-- Button does nothing now -->
-    <button>Calculate</button>
-  </div>
+<button onclick="myFunction()">Calculate</button>
+
+</div>
+
+<script>
+  function myFunction() {
+      let month = document.getElementById("month").value;
+      let power_consumption = document.getElementById("consumption").value;
+      let cost_per_kwh = document.getElementById("rate").value;
+
+      let resultDisplay = document.getElementById("totalBill");
+
+    
+      let result_value = power_consumption * cost_per_kwh;
+      resultDisplay.innerHTML = `₱${result_value.toFixed(2)}`;
+
+      // Add result to result table in dashboard.html
+      let result_table = document.getElementById("resulttable");
+      
+      if (result_table) {
+          let newRow = result_table.insertRow();
+          var cellMonth = newRow.insertCell(0);
+          var cellPower = newRow.insertCell(1);
+          var cellCost = newRow.insertCell(2);
+          var cellResult = newRow.insertCell(3);
+
+          cellMonth.innerHTML = month;
+          cellPower.innerHTML = power_consumption;
+          cellCost.innerHTML = cost_per_kwh;
+          cellResult.innerHTML = "₱" + result_value.toFixed(2);
+      }
+
+      
+      const entry = {
+        month: month,
+        consumption: power_consumption,
+        rate: cost_per_kwh,
+        total: result_value.toFixed(2)
+      };
+
+      let history = JSON.parse(localStorage.getItem("billHistory")) || [];
+      history.push(entry);
+      localStorage.setItem("billHistory", JSON.stringify(history));
+  }
+</script>
+
+</body>
+</html>
 
   <div class="result-box">
     <h3>Your Estimated Bill:</h3>

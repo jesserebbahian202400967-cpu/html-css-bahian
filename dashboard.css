@@ -37,13 +37,13 @@ body {
   text-decoration: underline;
 }
 
-/* CONTENT */
+
 .content {
   text-align: center;
   padding: 40px;
 }
 
-/* BILL BOX */
+
 .bill-box {
   background: #8ca691;
   width: 260px;
@@ -57,7 +57,7 @@ body {
   margin: 0;
 }
 
-/* CARDS */
+
 .cards {
   display: flex;
   justify-content: center;
