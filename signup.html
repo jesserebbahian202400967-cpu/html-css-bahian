@@ -22,9 +22,11 @@
 
   <div class="right-box">
 
-    <input type="text" placeholder="Enter name" class="input-box">
-    <input type="email" placeholder="Enter email" class="input-box">
-    <input type="password" placeholder="Password" class="input-box">
+    <input id="name" type="text" placeholder="Enter name" class="input-box">
+    <input id="email" type="email" placeholder="Enter email" class="input-box">
+    <input id="password" type="password" placeholder="Password" class="input-box">
+
+    <div id="recent-users-container" style="margin: 15px 0; padding: 10px; background: #f5f5f5; border-radius: 5px;"></div>
 
     <div class="terms">
       <input type="checkbox" id="terms">
@@ -32,7 +34,7 @@
     </div>
 
   
-   <a href="profile.html" class="signup-btn">SIGN UP</a>
+  <button id="signup-btn" class="signup-btn">SIGN UP</button>
 
 
 
@@ -40,6 +42,84 @@
 
   </div>
 </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/database.js"></script>
+  <script>
+  // Initialize recent users
+  async function loadRecentUsers() {
+    const recentUsers = getRecentUsers(); // Get from localStorage first
+    let usersToDisplay = recentUsers;
+    
+    // Try to fetch from database
+    try {
+      const dbResult = await getRecentUsersFromDatabase();
+      if (dbResult.success && dbResult.data.length > 0) {
+        usersToDisplay = dbResult.data;
+      }
+    } catch (error) {
+      console.warn('Could not load from database, using localStorage:', error);
+    }
+    
+    const container = document.getElementById('recent-users-container');
+    
+    if (usersToDisplay.length > 0 && container) {
+      container.style.display = 'block';
+      container.innerHTML = '<p style="margin: 0 0 10px 0; font-weight: bold;">Recent Users:</p>';
+      usersToDisplay.forEach(email => {
+        const btn = document.createElement('button');
+        btn.className = 'recent-user-btn';
+        btn.textContent = email;
+        btn.style.marginRight = '5px';
+        btn.style.marginBottom = '5px';
+        btn.style.padding = '8px 12px';
+        btn.style.background = '#007bff';
+        btn.style.color = 'white';
+        btn.style.border = 'none';
+        btn.style.borderRadius = '4px';
+        btn.style.cursor = 'pointer';
+        btn.style.fontSize = '12px';
+        btn.onclick = () => {
+          document.getElementById('email').value = email;
+          document.getElementById('email').focus();
+        };
+        container.appendChild(btn);
+      });
+    }
+  }
+
+  // Load recent users on page load
+  document.addEventListener('DOMContentLoaded', loadRecentUsers);
+
+  document.getElementById('signup-btn').addEventListener('click', async function (e) {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+    const termsCheckbox = document.getElementById('terms');
+
+    if (!name || !email || !password) {
+      alert('Please enter name, email and password.');
+      return;
+    }
+
+    if (!termsCheckbox.checked) {
+      alert('Please agree to the terms & policy.');
+      return;
+    }
+
+    const result = await signUp(email, password);
+    
+    if (result.success) {
+      alert(result.message + '\n\nPlease verify your email and log in.');
+      window.location.href = 'login.html';
+    } else {
+      alert(result.message);
+    }
+  });
+  </script>
 
 </body>
 </html>

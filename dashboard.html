@@ -56,5 +56,55 @@
 
   </section>
 
-</body>
-</html>
+  <!-- Load Supabase SDK, config and auth helpers -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/auth-guard.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/database.js"></script>
+  <script>
+    requireAuth();
+    
+    // Ensure profile is created on dashboard load
+    async function ensureProfileCreated() {
+      try {
+        console.log('🔄 Ensuring profile exists...');
+        const user = await getCurrentUser();
+        
+        if (user && user.email) {
+          const result = await createOrUpdateProfile(user.email);
+          console.log('Profile sync result:', result);
+        }
+      } catch (error) {
+        console.error('Error syncing profile:', error);
+      }
+    }
+    
+    // Load dashboard data
+    async function loadDashboardData() {
+      try {
+        // First ensure profile exists
+        await ensureProfileCreated();
+        
+        const lastBill = await getLastBillAmount();
+        const lastKwh = await getLastKwhUsed();
+        
+        const billElement = document.querySelector('.bill-box h1');
+        const kwhElement = document.querySelector('.bill-box p');
+        
+        if (billElement) {
+          billElement.textContent = `₱${lastBill.toFixed(2)}`;
+        }
+        if (kwhElement) {
+          kwhElement.textContent = `${lastKwh.toFixed(2)} kWh`;
+        }
+      } catch (error) {
+        console.error('Error loading dashboard data:', error);
+      }
+    }
+    
+    document.addEventListener('DOMContentLoaded', loadDashboardData);
+  </script>
+
+  </body>
+  </html>

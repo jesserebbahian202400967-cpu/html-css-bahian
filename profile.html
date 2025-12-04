@@ -47,3 +47,83 @@
 
 </body>
 </html>
+
+  <!-- Load Supabase SDK, config and auth helpers -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/auth-guard.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/database.js"></script>
+  <script>
+    // Protect this page
+    requireAuth();
+    
+    // Load user profile information
+    async function loadProfileData() {
+      try {
+        console.log('✅ Loading profile data...');
+        
+        // First get current user
+        const currentUser = await getCurrentUser();
+        console.log('Current user:', currentUser);
+        
+        const result = await getUserProfile();
+        console.log('Profile result:', result);
+        
+        if (result.success && result.data) {
+          const profile = result.data;
+          console.log('✅ Profile loaded:', profile);
+          
+          // Display email
+          const emailElement = document.querySelector('.info-box .info-row p');
+          if (emailElement) {
+            emailElement.textContent = profile.email || 'N/A';
+            console.log('✅ Email set to:', profile.email);
+          }
+          
+          // Display name
+          const userNameElement = document.querySelector('.profile-header .text h1');
+          if (userNameElement) {
+            userNameElement.textContent = profile.full_name || profile.email?.split('@')[0] || 'User';
+            console.log('✅ Name set to:', userNameElement.textContent);
+          }
+        } else {
+          console.warn('⚠️  Profile not found, using fallback');
+          // Fallback to email from auth if profile doesn't exist
+          const email = await getCurrentUserEmail();
+          console.log('Fallback email:', email);
+          
+          if (email) {
+            const emailElement = document.querySelector('.info-box .info-row p');
+            if (emailElement) {
+              emailElement.textContent = email;
+            }
+            
+            const userNameElement = document.querySelector('.profile-header .text h1');
+            if (userNameElement) {
+              userNameElement.textContent = email.split('@')[0];
+            }
+          }
+        }
+      } catch (error) {
+        console.error('❌ Error loading profile data:', error);
+        
+        // Fallback to email
+        try {
+          const email = await getCurrentUserEmail();
+          console.log('Fallback email (from catch):', email);
+          
+          if (email) {
+            const emailElement = document.querySelector('.info-box .info-row p');
+            if (emailElement) {
+              emailElement.textContent = email;
+            }
+          }
+        } catch (e) {
+          console.error('❌ Fallback also failed:', e);
+        }
+      }
+    }
+    
+    document.addEventListener('DOMContentLoaded', loadProfileData);
+  </script>

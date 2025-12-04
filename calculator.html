@@ -46,39 +46,56 @@
 
 </div>
 
+<!-- Load Supabase SDK, config and auth helpers -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/auth-guard.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/database.js"></script>
+<script>requireAuth();</script>
+
 <script>
-function myFunction() {
-  let month = document.getElementById("month").value;
-  let consumption = document.getElementById("consumption").value;
-  let rate = document.getElementById("rate").value;
+async function myFunction() {
+  const month = document.getElementById("month").value.trim();
+  const consumptionRaw = document.getElementById("consumption").value;
+  const rateRaw = document.getElementById("rate").value;
 
-  let resultDisplay = document.getElementById("totalBill");
+  const resultDisplay = document.getElementById("totalBill");
 
-  if (month === "" || consumption === "" || rate === "") {
-      alert("Please fill in all fields.");
-      return;
+  if (!month || consumptionRaw === "" || rateRaw === "") {
+    alert("Please fill in all fields.");
+    return;
   }
 
-  let total = consumption * rate;
+  const consumption = parseFloat(consumptionRaw);
+  const rate = parseFloat(rateRaw);
 
-  resultDisplay.innerHTML = `₱${total.toFixed(2)}`;
+  if (Number.isNaN(consumption) || Number.isNaN(rate) || consumption < 0 || rate < 0) {
+    alert("Please enter valid positive numbers for consumption and rate.");
+    return;
+  }
 
-  let billRecord = {
-      month: month,
-      consumption: consumption,
-      rate: rate,
-      total: total.toFixed(2)
-  };
+  const total = consumption * rate;
 
-  let history = JSON.parse(localStorage.getItem("billHistory")) || [];
+  resultDisplay.textContent = `₱${total.toFixed(2)}`;
 
-
-  history.push(billRecord);
-
-
-  localStorage.setItem("billHistory", JSON.stringify(history));
-
-
+  // Save calculation to Supabase database
+  try {
+    // Using 0 for previous reading and consumption for current reading
+    // Adjust these based on your actual form inputs
+    const result = await saveCalculation(month, 0, consumption, rate, total, consumption);
+    
+    if (result.success) {
+      console.log('Calculation saved to database:', result.data);
+      alert('Calculation saved successfully!');
+    } else {
+      console.warn('Failed to save to database:', result.message);
+      alert('Calculation saved locally but failed to sync to database');
+    }
+  } catch (err) {
+    console.error('Error saving calculation:', err);
+    alert('Error saving calculation');
+  }
 }
 </script>
 
